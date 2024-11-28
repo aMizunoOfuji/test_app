@@ -9,39 +9,41 @@ import SwiftUI
 
 struct ContentView2: View {
     
-    @State private var toContentView: Bool = false
+    @State var toContentView: Bool = false
     
     var body: some View {
         NavigationStack{
-            NavigationLink(
-                destination: ContentView(),
-                isActive: $toContentView,
-                label:{
-                    VStack{
-                        Rectangle()
-                            .foregroundColor(.white)
-                        VStack{
-                            ZStack{
-                                Rectangle()
-                                    .foregroundColor(.blue)
-                                    .cornerRadius(10)
-                                    .padding()
-                                    .frame(width:200,height:100)
-                                    .shadow(radius: 10, x: 10, y: 10)
-                                Button(action: {toContentView=true}){
-                                    Text("押してね")
-                                        .foregroundColor(.white)
-                                        .bold()
+            VStack{
+                Rectangle()
+                    .foregroundColor(.white)
+                ZStack{
+                    Rectangle()
+                        .foregroundColor(.white)
+                    ZStack{
+                        NavigationLink(
+                            destination: ContentView(),
+                            isActive: $toContentView,
+                            //swdae q
+                            label:{
+                                Button(action: {self.toContentView=true}){
+                                    Rectangle()
+                                        .foregroundColor(.blue)
+                                        .cornerRadius(10)
+                                        .frame(width:200,height:70)
+
                                 }
+                                .shadow(radius: 10, x: 10, y: 10)
                             }
-                            Rectangle()
-                                .foregroundColor(.white)
+                        )
+                        Text("押してね")
+                                    .foregroundColor(.white)
+                                    .bold()
                         }
-                    }
                 }
-            )
+                Rectangle()
+                    .foregroundColor(.white)
+            }
         }
-        .padding()
     }
 }
 
